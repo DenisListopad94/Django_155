@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% block page_content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMW</title>
+    <link rel="stylesheet" href="{% static 'auto/css/bmw.css' %}">
+    <script src="{% static 'auto/js/script.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<H1>BMW - {{bmw}}</H1>
+<a href="/auto/base/"><img  width="200" height="200" src="{% static 'auto/img/bmw.jpg' %}" alt="no image"></a>
+</body>
+</html>
+{% endblock %}
