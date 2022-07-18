@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import *
+from .forms import *
 
 bmw = {"bmw": "cool car for best people"}
 model_car = ["bmw", 'volvo', 'lada']
@@ -30,3 +31,25 @@ def car_bmw(request):
 
 def car_volvo(request):
     return render(request, "volvo.html")
+
+
+def add_comment_form(request):
+    if request.method == 'POST':
+        form = Comment(request.POST)
+        if form.is_valid():
+            CommenModel.objects.create(**form.cleaned_data)
+            return redirect("/auto/all/")
+    else:
+        form = Comment()
+    return render(request,'comment.html',{'form':form})
+
+def car_form(request):
+    if request.method == 'POST':
+        form = CarForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/auto/all/")
+    else:
+        form = CarForm()
+    return render(request,'car_form.html',{'form':form})
+
